@@ -17,7 +17,6 @@ public class Admin extends User{
         System.out.println("9. View product by category");
         System.out.println("9. View product details");
         System.out.println("10. Exit");
-        System.out.println("testing");
     }
 
     public void viewProfile(int adminId){
