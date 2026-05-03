@@ -1,3 +1,5 @@
+import java.util.List;
+
 public class Customer extends User{
     private int customerId;
     private String customerName;
@@ -11,11 +13,17 @@ public class Customer extends User{
     @Override
     public void showMenu() {
         System.out.println("\n=== Customer Menu ===");
-        System.out.println("1. Browse Products");
-        System.out.println("2. View Product by Category");
-        System.out.println("3. View Cart");
-        System.out.println("4. Place Order");
-        System.out.println("5. View Order History");
+        System.out.println("1. View profile");
+        System.out.println("2. Update profile");
+        System.out.println("3. Place order");
+        System.out.println("4. View order history");
+        System.out.println("5. Display order history");
+        System.out.println("6. View cart");
+        System.out.println("7. Add to cart");
+        System.out.println("8. Browse products");
+        System.out.println("9. View product by category");
+        System.out.println("9. View product details");
+        System.out.println("10. Exit");
     }
 
     public int getCustomerId(){
