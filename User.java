@@ -122,7 +122,7 @@ public abstract class User {
         for (User user : repo.getUsers()) {
             if (user.username.equals(inputUsername) && user.password.equals(inputPassword)) {
                 System.out.println("Login successful! Role: " + user.role);
-                user.showMenu();   // Polymorphism: calls the right menu automatically
+                user.showMenu();
                 return user;
             }
         }
