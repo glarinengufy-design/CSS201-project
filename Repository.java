@@ -276,4 +276,49 @@ public class Repository {
         }
         System.out.println("User not found.");
     }
+
+    public void updateProfile(User user) {
+        System.out.println("\n=== Current Profile ===");
+        System.out.println("Username: " + user.getUsername());
+        System.out.println("Password: " + user.getPassword());
+        System.out.println("Email: " + user.getEmail());
+        System.out.println("Full Name: " + user.getFullName());
+        System.out.println("Phone Number: " + user.getPhoneNumber());
+        System.out.println("Address: " + user.getAddress());
+
+        System.out.print("\nWhich one do you want to update? (username, password, email, fullName, phoneNumber, address): ");
+        String select = scanner.nextLine();
+
+        switch (select.toLowerCase()) {
+            case "username":
+                System.out.print("Enter new username: ");
+                user.setUsername(scanner.nextLine());
+                break;
+            case "password":
+                System.out.print("Enter new password: ");
+                user.setPassword(scanner.nextLine());
+                break;
+            case "email":
+                System.out.print("Enter new email: ");
+                user.setEmail(scanner.nextLine());
+                break;
+            case "fullname":
+                System.out.print("Enter new full name: ");
+                user.setFullName(scanner.nextLine());
+                break;
+            case "phonenumber":
+                System.out.print("Enter new phone number: ");
+                user.setPhoneNumber(scanner.nextLine());
+                break;
+            case "address":
+                System.out.print("Enter new address: ");
+                user.setAddress(scanner.nextLine());
+                break;
+            default:
+                System.out.println("Invalid selection.");
+                return;
+        }
+
+        System.out.println("Profile updated successfully!");
+    }
 }
