@@ -79,30 +79,41 @@ public abstract class User {
         return role;
     }
 
-    public String registerAccount(String username, String password, String email, String phoneNumber, String fullName, String address, String role){
+    public User registerAccount(Repository repo) {
         System.out.println("Registration");
+
         System.out.print("Full Name: ");
-        this.fullName = scanner.nextLine();
+        String fullName = scanner.nextLine();
 
         System.out.print("Email: ");
-        this.email = scanner.nextLine();
+        String email = scanner.nextLine();
 
         System.out.print("Phone Number: ");
-        this.phoneNumber = scanner.nextLine();
+        String phoneNumber = scanner.nextLine();
 
         System.out.print("Address: ");
-        this.address = scanner.nextLine();
+        String address = scanner.nextLine();
 
         System.out.print("Username: ");
-        this.username = scanner.nextLine();
+        String username = scanner.nextLine();
 
         System.out.print("Role: ");
-        this.role = scanner.nextLine();
+        String role = scanner.nextLine();
 
         System.out.print("Password: ");
-        this.password = scanner.nextLine();
+        String password = scanner.nextLine();
 
-        return "Account registered successfully for " + this.username;
+        // Auto-generate userId
+        int userId = repo.getUsers().size() + 1;
+
+        // Create new User object
+        User newUser = new User(userId, username, password, email, phoneNumber, fullName, address, role);
+
+        // Store in repository
+        repo.addUser(newUser);
+
+        System.out.println("Account registered successfully for " + username);
+        return newUser;
     }
 
     public abstract void showMenu();
