@@ -259,4 +259,21 @@ public class Repository {
     public void displayOrderHistory(){
 
     }
+
+    public void viewProfile(String username) {
+        for (User user : users) {
+            if (user.getUsername().equalsIgnoreCase(username)) {
+                System.out.println("\n=== User Profile ===");
+                System.out.println("User ID: " + user.getUserId());
+                System.out.println("Username: " + user.getUsername());
+                System.out.println("Password: " + user.getPassword()); // consider masking for security
+                System.out.println("Email: " + user.getEmail());
+                System.out.println("Full Name: " + user.getFullName());
+                System.out.println("Phone Number: " + user.getPhoneNumber());
+                System.out.println("Address: " + user.getAddress());
+                return;
+            }
+        }
+        System.out.println("User not found.");
+    }
 }
