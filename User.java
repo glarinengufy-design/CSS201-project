@@ -63,7 +63,7 @@ public abstract class User {
         return fullName;
     }
 
-    public void setFullName(Stirng fullName){
+    public void setFullName(String fullName){
         this.fullName=fullName;
     }
 
