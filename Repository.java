@@ -30,9 +30,40 @@ public class Repository {
         users.add(user); 
     }
 
-    public void addProduct(Product product){
+    public void addProduct() {
+        System.out.println("Please select the product category");
+        String category = scanner.nextLine();
+
+        System.out.println("Please enter the product name");
+        String name = scanner.nextLine();
+
+        System.out.println("Please enter the product price");
+        double price = scanner.nextDouble();
+        scanner.nextLine();
+
+        System.out.println("Please enter the quantity");
+        int quantity = scanner.nextInt();
+        scanner.nextLine();
+
+        // Auto set availability based on quantity
+        boolean available = quantity > 0;
+
+        // Create new Product object
+        Product product = new Product(
+            "P" + (products.size() + 1), // auto ID
+            name,
+            category,
+            price,
+            quantity,
+            available
+        );
+
+        // Store in product list
         products.add(product);
-    }
+
+        System.out.println("Product added successfully!");
+}
+
 
     public boolean removeProduct(String productId){
 
