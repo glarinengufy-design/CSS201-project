@@ -69,7 +69,7 @@ public class Repository {
 
     }
 
-    public void updateProduct(Product product) {
+    public void updateProduct() {
         System.out.print("Please enter the Product ID: ");
         String productId = scanner.nextLine();
 
