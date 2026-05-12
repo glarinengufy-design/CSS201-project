@@ -28,9 +28,17 @@ public class Admin extends User{
     }
 
     public void addProduct(Product product, Repository repository) {
-        repository.addProduct(product);
+        if (product.getPrice() <= 0 || product.getQuantity() < 0) {
+            System.out.println("Invalid product details.");
+            return;
+        }
+        if (repository.viewProductById(product.getProductId()) != null) {
+            System.out.println("Product already exists.");
+            return;
+        }
+        repository.addProduct();
     }
-
+    
     public void updateProduct(Product product){
 
     }
