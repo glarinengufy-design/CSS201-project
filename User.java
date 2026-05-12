@@ -47,7 +47,7 @@ public abstract class User {
         return email;
     }
 
-    public void setEmai(String email){
+    public void setEmail(String email){
         this.email=email;
     }
 
@@ -92,7 +92,7 @@ public abstract class User {
         String phoneNumber = scanner.nextLine();
 
         System.out.print("Address: ");
-        String address = scanner.nextLine();
+        // String address = scanner.nextLine();
 
         System.out.print("Username: ");
         String username = scanner.nextLine();
@@ -106,9 +106,19 @@ public abstract class User {
         // Auto-generate userId
         int userId = repo.getUsers().size() + 1;
 
-        // Create new User object
-        User newUser = new User(userId, username, password, email, phoneNumber, fullName, address, role);
+        // Inside registerAccount method
+        User newUser = null;
 
+        if (role.equalsIgnoreCase("Admin")) {
+            newUser = new Admin(userId, password, username, email, phoneNumber, fullName, address, role);
+        } else if (role.equalsIgnoreCase("Customer")) {
+            newUser = new Customer(userId, password, username, email, phoneNumber, fullName, address, role, userId, username);
+        }
+
+        if (newUser != null) {
+            repo.addUser(newUser);
+            System.out.println("Account registered successfully for " + username);
+        }
         // Store in repository
         repo.addUser(newUser);
 
