@@ -42,8 +42,8 @@ public class Customer extends User{
 
     }
 
-    public Order placeOrder(){
-
+    public void placeOrder(Repository repository){
+        repository.placeOrder(Customer customer);
     }
 
     public List<Order> viewOrderHistory(){
