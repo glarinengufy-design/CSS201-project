@@ -38,7 +38,11 @@ public class Order {
     }
 
     public double calculateTotal(){
-
+        double sum = 0;
+        for (OrderItem item : items) {
+            sum += item.calculateTotal();
+        }
+        return sum;
     }
 
     public void addItem(OrderItem items){
@@ -61,7 +65,26 @@ public class Order {
 
     }
 
-    public boolean updateQuantity(String productId, int quantity){
-        
+    public boolean updateQuantity(String productId, int quantity) {
+        for (OrderItem item : items) {
+            if (item.getProduct().getProductId().equals(productId)) {
+                // Update the quantity
+                int newQuantity = item.getQuantity() + quantity; // add to existing
+                if (newQuantity <= 0) {
+                    System.out.println("Quantity must be greater than 0.");
+                    return false;
+                }
+                item.setQuantity(newQuantity);
+
+                // Recalculate total cost
+                totalCost = calculateTotal();
+
+                System.out.println("Quantity updated successfully. New quantity: " + newQuantity);
+                return true;
+            }
+        }
+        System.out.println("Product not found in order.");
+        return false;
     }
+
 }
