@@ -24,6 +24,7 @@ public class Admin extends User{
     }
 
     public String updateProfile(String adminName, String email, String phoneNumber){
+        return null;
 
     }
 
@@ -32,7 +33,7 @@ public class Admin extends User{
     }
 
     public void updateProduct(Repository repository){
-        repository.updateProduct(Product product);
+        repository.updateProduct();
     }
 
     public void viewProductsAvailability(){
