@@ -15,6 +15,10 @@ public class OrderItem {
         return quantity;
     }
 
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
     public double calculateTotal(){
         return product.getPrice() * quantity;
     }
