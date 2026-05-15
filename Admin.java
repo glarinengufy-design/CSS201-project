@@ -1,6 +1,6 @@
 public class Admin extends User{
-     public Admin(int userId, String username, String email, String password, String phoneNumber, String fullName, String address, String role){
-        super(userId, username, email, password, phoneNumber, fullName, address, role);
+     public Admin(int userId, String username, String email, String password, String phoneNumber, String fullName, String role){
+        super(userId, username, email, password, phoneNumber, fullName, role);
     }
 
     @Override
