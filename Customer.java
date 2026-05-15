@@ -4,8 +4,8 @@ public class Customer extends User{
     private int customerId;
     private String customerName;
 
-    public Customer(int userId, String username, String email, String password, String phoneNumber, String fullName, String address, String role, int customerId, String customerName){
-        super(userId, username, email, password, phoneNumber, fullName, address, role);
+    public Customer(int userId, String username, String email, String password, String phoneNumber, String fullName, String role, int customerId, String customerName){
+        super(userId, username, email, password, phoneNumber, fullName, role);
         this.customerId = customerId;
         this.customerName = customerName;
     }
