@@ -8,7 +8,7 @@ public class Repository {
     private List<User> users;
     Scanner scanner = new Scanner(System.in);
 
-    public Repository(){
+    public Repository(List<Product> products, List<Order> orders, List<User> users){
         this.products = new ArrayList<>();
         this.orders = new ArrayList<>();
         this.users = new ArrayList<>();
@@ -48,8 +48,9 @@ public class Repository {
         // Auto set availability based on quantity
         boolean available = quantity > 0;
 
-        // Create new Product object
-        Product product = new Product(
+        Product newProduct = null;
+        
+        newProduct = new Product(
             "P" + (products.size() + 1), // auto ID
             name,
             category,
