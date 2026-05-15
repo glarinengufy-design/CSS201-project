@@ -7,19 +7,17 @@ public abstract class User {
     protected String email;
     protected String phoneNumber;
     protected String fullName;
-    protected String address;
     protected String role;
 
     Scanner scanner = new Scanner(System.in);
 
-    public User(int userId, String password, String username, String email, String phoneNumber, String fullName, String address, String role){
+    public User(int userId, String password, String username, String email, String phoneNumber, String fullName, String role){
         this.userId = userId;
         this.password = password;
         this.username = username;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.fullName = fullName;
-        this.address = address;
         this.role = role;
     }
 
@@ -67,14 +65,6 @@ public abstract class User {
         this.fullName=fullName;
     }
 
-    public String getAddress(){
-        return address;
-    }
-
-    public void setAddress(String address){
-        this.address=address;
-    }
-
     public String getRole(){
         return role;
     }
@@ -90,9 +80,6 @@ public abstract class User {
 
         System.out.print("Phone Number: ");
         String phoneNumber = scanner.nextLine();
-
-        System.out.print("Address: ");
-        // String address = scanner.nextLine();
 
         System.out.print("Username: ");
         String username = scanner.nextLine();
@@ -110,9 +97,9 @@ public abstract class User {
         User newUser = null;
 
         if (role.equalsIgnoreCase("Admin")) {
-            newUser = new Admin(userId, password, username, email, phoneNumber, fullName, address, role);
+            newUser = new Admin(userId, password, username, email, phoneNumber, fullName, role);
         } else if (role.equalsIgnoreCase("Customer")) {
-            newUser = new Customer(userId, password, username, email, phoneNumber, fullName, address, role, userId, username);
+            newUser = new Customer(userId, password, username, email, phoneNumber, fullName, role, userId, username);
         }
 
         if (newUser != null) {
