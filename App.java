@@ -11,8 +11,8 @@ public class App {
         List<Order> orders = new ArrayList<>();
         Repository repo = new Repository(products, orders, users);
 
-        Admin admin = new Admin(1, "AdminUser");
-        Customer customer = new Customer(2, "CustUser");
+        Admin admin = new Admin(64645,fafa123,dnfdj,fafa445,014333555,Fafa,Admin);
+        Customer customer = new Customer(64645,fafa123,dnfdj,fafa445,014333555,Fafa,Customer);
 
         repo.addUser(admin);
         repo.addUser(customer);
