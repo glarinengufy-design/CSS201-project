@@ -34,12 +34,12 @@ public class Customer extends User{
         return customerName;
     }
 
-    public void viewProfile(){
-
+    public void viewProfile(Repository repository){
+        repository.viewProfile(username);
     }
 
-    public String updateProfile(String adminName, String email, String phoneNumber){
-
+    public void updateProfile(Repository repository){
+        repository.updateProfile(User user);
     }
 
     public void placeOrder(Repository repository){
