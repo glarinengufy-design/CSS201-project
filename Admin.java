@@ -19,13 +19,12 @@ public class Admin extends User{
         System.out.println("10. Exit");
     }
 
-    public void viewProfile(int adminId){
-
+    public void viewProfile(Repository repository){
+        repository.viewProfile(username);
     }
 
-    public String updateProfile(String adminName, String email, String phoneNumber){
-        return null;
-
+    public void updateProfile(Repository repository){
+        repository.updateProfile(User user);
     }
 
     public void addProduct(Repository repository) {
