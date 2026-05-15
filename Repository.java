@@ -285,9 +285,8 @@ public class Repository {
         System.out.println("Email: " + user.getEmail());
         System.out.println("Full Name: " + user.getFullName());
         System.out.println("Phone Number: " + user.getPhoneNumber());
-        System.out.println("Address: " + user.getAddress());
 
-        System.out.print("\nWhich one do you want to update? (username, password, email, fullName, phoneNumber, address): ");
+        System.out.print("\nWhich one do you want to update? (username, password, email, fullName, phoneNumber): ");
         String select = scanner.nextLine();
 
         switch (select.toLowerCase()) {
@@ -310,10 +309,6 @@ public class Repository {
             case "phonenumber":
                 System.out.print("Enter new phone number: ");
                 user.setPhoneNumber(scanner.nextLine());
-                break;
-            case "address":
-                System.out.print("Enter new address: ");
-                user.setAddress(scanner.nextLine());
                 break;
             default:
                 System.out.println("Invalid selection.");
