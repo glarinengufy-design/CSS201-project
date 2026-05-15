@@ -8,7 +8,7 @@ public class Repository {
     private List<User> users;
     Scanner scanner = new Scanner(System.in);
 
-    public Repository(List<Product> products,List<Order> orders, List<User> users){
+    public Repository(){
         this.products = new ArrayList<>();
         this.orders = new ArrayList<>();
         this.users = new ArrayList<>();
