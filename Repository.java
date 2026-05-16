@@ -48,20 +48,73 @@ public class Repository {
         // Auto set availability based on quantity
         boolean available = quantity > 0;
 
-        Product newProduct = null;
-        
-        newProduct = new Product(
-            "P" + (products.size() + 1), // auto ID
-            name,
-            category,
-            price,
-            quantity,
-            available
-        );
+        System.out.println("Please enter product expiry date");
+        String expiryDate = scanner.nextLine();
 
-        // Store in product list
-        products.add(product);
+        System.out.println("Please enter product brand");
+        String brand = scanner.nextLine();
 
+        switch(category){
+            case "Vegetable":
+                Vegetable newProduct = new Vegetable(
+                    "P" + (products.size() + 1), // auto ID
+                    name,
+                    "Vegetable",
+                    price,
+                    quantity,
+                    available,
+                    expiryDate
+                );
+                products.add(newProduct);
+            
+            case "Snack":
+                Snack newProduct = new Snack(
+                    "P" + (products.size() + 1), // auto ID
+                    name,
+                    "Snack",
+                    price,
+                    quantity,
+                    available,
+                    brand
+                );
+                products.add(newProduct);
+
+            case "Fruit":
+                Fruit newProduct = new Fruit(
+                    "P" + (products.size() + 1), // auto ID
+                    name,
+                    "Vegetable",
+                    price,
+                    quantity,
+                    available,
+                    expiryDate
+                );
+                products.add(newProduct);
+
+            case "Daily Product":
+                DailyProduct newProduct = new DailyProduct(
+                    "P" + (products.size() + 1), // auto ID
+                    name,
+                    "Vegetable",
+                    price,
+                    quantity,
+                    available,
+                    brand
+                );
+                products.add(newProduct);
+
+            case "Household Necessities":
+                DailyProduct newProduct = new DailyProduct(
+                    "P" + (products.size() + 1), // auto ID
+                    name,
+                    "Vegetable",
+                    price,
+                    quantity,
+                    available,
+                    brand
+                );
+                products.add(newProduct);
+        }
         System.out.println("Product added successfully!");
 }
 
