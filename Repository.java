@@ -324,7 +324,6 @@ public class Repository {
                 System.out.println("Email: " + user.getEmail());
                 System.out.println("Full Name: " + user.getFullName());
                 System.out.println("Phone Number: " + user.getPhoneNumber());
-                System.out.println("Address: " + user.getAddress());
                 return;
             }
         }
