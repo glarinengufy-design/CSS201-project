@@ -1,4 +1,6 @@
 public class Admin extends User{
+    private Repository repository;
+
      public Admin(int userId, String username, String email, String password, String phoneNumber, String fullName, String role){
         super(userId, username, email, password, phoneNumber, fullName, role);
     }
@@ -19,19 +21,19 @@ public class Admin extends User{
         System.out.println("10. Exit");
     }
 
-    public void viewProfile(Repository repository){
+    public void viewProfile(){
         repository.viewProfile(username);
     }
 
-    public void updateProfile(Repository repository){
-        repository.updateProfile(User user);
+    public void updateProfile(){
+        repository.updateProfile(username);
     }
 
-    public void addProduct(Repository repository) {
+    public void addProduct() {
         repository.addProduct();
     }
 
-    public void updateProduct(Repository repository){
+    public void updateProduct(){
         repository.updateProduct();
     }
 
