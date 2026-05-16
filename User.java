@@ -8,10 +8,12 @@ public abstract class User {
     protected String phoneNumber;
     protected String fullName;
     protected String role;
+    private static Repository repository;
+    private static int nextUserId = 1;
 
     Scanner scanner = new Scanner(System.in);
 
-    public User(int userId, String password, String username, String email, String phoneNumber, String fullName, String role){
+    public User(int userId, String username, String email, String password, String phoneNumber, String fullName, String role){
         this.userId = userId;
         this.password = password;
         this.username = username;
@@ -69,7 +71,8 @@ public abstract class User {
         return role;
     }
 
-    public User registerAccount(Repository repo) {
+    public static User registerAccount() {
+        Scanner scanner = new Scanner(System.in);
         System.out.println("Registration");
 
         System.out.print("Full Name: ");
@@ -90,33 +93,30 @@ public abstract class User {
         System.out.print("Password: ");
         String password = scanner.nextLine();
 
-        // Auto-generate userId
-        int userId = repo.getUsers().size() + 1;
+        // Auto-generate userId using internal counter
+        int userId = nextUserId++;
 
-        // Inside registerAccount method
         User newUser = null;
 
         if (role.equalsIgnoreCase("Admin")) {
-            newUser = new Admin(userId, password, username, email, phoneNumber, fullName, role);
+            newUser = new Admin(userId, username, email, password, phoneNumber, fullName, role);
         } else if (role.equalsIgnoreCase("Customer")) {
-            newUser = new Customer(userId, password, username, email, phoneNumber, fullName, role, userId, username);
+            newUser = new Customer(userId, username, email, password, phoneNumber, fullName, role, userId, username);
         }
 
         if (newUser != null) {
-            repo.addUser(newUser);
             System.out.println("Account registered successfully for " + username);
+            return newUser;
         }
-        // Store in repository
-        repo.addUser(newUser);
 
-        System.out.println("Account registered successfully for " + username);
-        return newUser;
+        System.out.println("Invalid role specified. Please use Admin or Customer.");
+        return null;
     }
 
     public abstract void showMenu();
 
-    public static User login(Repository repo, String inputUsername, String inputPassword) {
-        for (User user : repo.getUsers()) {
+    public static User login(String inputUsername, String inputPassword) {
+        for (User user : repository.getUsers()) {
             if (user.username.equals(inputUsername) && user.password.equals(inputPassword)) {
                 System.out.println("Login successful! Role: " + user.role);
                 user.showMenu();
