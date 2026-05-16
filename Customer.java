@@ -3,9 +3,10 @@ import java.util.List;
 public class Customer extends User{
     private int customerId;
     private String customerName;
+    private Repository repository;
 
-    public Customer(int userId, String username, String email, String password, String phoneNumber, String fullName, String role, int customerId, String customerName){
-        super(userId, username, email, password, phoneNumber, fullName, role);
+    public Customer(int userId, String password, String username, String email, String phoneNumber, String fullName, String role, int customerId, String customerName){
+        super(userId, password, username, email, phoneNumber, fullName, role);
         this.customerId = customerId;
         this.customerName = customerName;
     }
@@ -34,16 +35,16 @@ public class Customer extends User{
         return customerName;
     }
 
-    public void viewProfile(Repository repository){
+    public void viewProfile(){
         repository.viewProfile(username);
     }
 
-    public void updateProfile(Repository repository){
-        repository.updateProfile(User user);
+    public void updateProfile(){
+        repository.updateProfile(this.username);
     }
 
-    public void placeOrder(Repository repository){
-        repository.placeOrder(Customer customer);
+    public void placeOrder(){
+        repository.placeOrder(this);
     }
 
     public List<Order> viewOrderHistory(){
