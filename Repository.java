@@ -12,6 +12,7 @@ public class Repository {
         this.products = new ArrayList<>();
         this.orders = new ArrayList<>();
         this.users = new ArrayList<>();
+
     }
 
     public List<Product> getProducts(){
@@ -28,6 +29,10 @@ public class Repository {
 
     public void addUser(User user) { 
         users.add(user); 
+    }
+
+    public void addProduct(Product product) {
+        products.add(product);
     }
 
     public void addProduct() {
@@ -48,15 +53,14 @@ public class Repository {
         // Auto set availability based on quantity
         boolean available = quantity > 0;
 
-        System.out.println("Please enter product expiry date");
-        String expiryDate = scanner.nextLine();
-
-        System.out.println("Please enter product brand");
-        String brand = scanner.nextLine();
+        String expiryDate = null;
+        String brand = null;
 
         switch(category){
             case "Vegetable":
-                Vegetable newProduct = new Vegetable(
+                System.out.println("Please enter product expiry date");
+                expiryDate= scanner.nextLine();
+                Vegetable newVegetable = new Vegetable(
                     "P" + (products.size() + 1), // auto ID
                     name,
                     "Vegetable",
@@ -65,10 +69,12 @@ public class Repository {
                     available,
                     expiryDate
                 );
-                products.add(newProduct);
+                products.add(newVegetable);
             
             case "Snack":
-                Snack newProduct = new Snack(
+                System.out.println("Please enter product brand");
+                brand = scanner.nextLine();
+                Snack newSnack = new Snack(
                     "P" + (products.size() + 1), // auto ID
                     name,
                     "Snack",
@@ -77,43 +83,49 @@ public class Repository {
                     available,
                     brand
                 );
-                products.add(newProduct);
+                products.add(newSnack);
 
             case "Fruit":
-                Fruit newProduct = new Fruit(
+                System.out.println("Please enter product expiry date");
+                expiryDate= scanner.nextLine();
+                Fruit newFruit = new Fruit(
                     "P" + (products.size() + 1), // auto ID
                     name,
-                    "Vegetable",
+                    "Fruit",
                     price,
                     quantity,
                     available,
                     expiryDate
                 );
-                products.add(newProduct);
+                products.add(newFruit);
 
             case "Daily Product":
-                DailyProduct newProduct = new DailyProduct(
+                System.out.println("Please enter product brand");
+                brand = scanner.nextLine();
+                DailyProduct newDailyProduct = new DailyProduct(
                     "P" + (products.size() + 1), // auto ID
                     name,
-                    "Vegetable",
+                    "Daily Product",
                     price,
                     quantity,
                     available,
                     brand
                 );
-                products.add(newProduct);
+                products.add(newDailyProduct);
 
             case "Household Necessities":
-                DailyProduct newProduct = new DailyProduct(
+                System.out.println("Please enter product brand");
+                brand = scanner.nextLine();
+                HouseholdNecessities newHousehold = new HouseholdNecessities(
                     "P" + (products.size() + 1), // auto ID
                     name,
-                    "Vegetable",
+                    "Household Necessities",
                     price,
                     quantity,
                     available,
                     brand
                 );
-                products.add(newProduct);
+                products.add(newHousehold);
         }
         System.out.println("Product added successfully!");
 }
@@ -330,43 +342,49 @@ public class Repository {
         System.out.println("User not found.");
     }
 
-    public void updateProfile(User user) {
-        System.out.println("\n=== Current Profile ===");
-        System.out.println("Username: " + user.getUsername());
-        System.out.println("Password: " + user.getPassword());
-        System.out.println("Email: " + user.getEmail());
-        System.out.println("Full Name: " + user.getFullName());
-        System.out.println("Phone Number: " + user.getPhoneNumber());
-
-        System.out.print("\nWhich one do you want to update? (username, password, email, fullName, phoneNumber): ");
-        String select = scanner.nextLine();
-
-        switch (select.toLowerCase()) {
-            case "username":
-                System.out.print("Enter new username: ");
-                user.setUsername(scanner.nextLine());
-                break;
-            case "password":
-                System.out.print("Enter new password: ");
-                user.setPassword(scanner.nextLine());
-                break;
-            case "email":
-                System.out.print("Enter new email: ");
-                user.setEmail(scanner.nextLine());
-                break;
-            case "fullname":
-                System.out.print("Enter new full name: ");
-                user.setFullName(scanner.nextLine());
-                break;
-            case "phonenumber":
-                System.out.print("Enter new phone number: ");
-                user.setPhoneNumber(scanner.nextLine());
-                break;
-            default:
-                System.out.println("Invalid selection.");
+    public void updateProfile(String username) {
+        for (User user : users) {
+            if (user.getUsername().equalsIgnoreCase(username)) {
+                System.out.println("\n=== User Profile ===");
+                System.out.println("User ID: " + user.getUserId());
+                System.out.println("Username: " + user.getUsername());
+                System.out.println("Password: " + user.getPassword()); // consider masking for security
+                System.out.println("Email: " + user.getEmail());
+                System.out.println("Full Name: " + user.getFullName());
+                System.out.println("Phone Number: " + user.getPhoneNumber());
                 return;
-        }
+            }
 
-        System.out.println("Profile updated successfully!");
+            System.out.print("\nWhich one do you want to update? (username, password, email, fullName, phoneNumber): ");
+            String select = scanner.nextLine();
+
+            switch (select.toLowerCase()) {
+                case "username":
+                    System.out.print("Enter new username: ");
+                    user.setUsername(scanner.nextLine());
+                    break;
+                case "password":
+                    System.out.print("Enter new password: ");
+                    user.setPassword(scanner.nextLine());
+                    break;
+                case "email":
+                    System.out.print("Enter new email: ");
+                    user.setEmail(scanner.nextLine());
+                    break;
+                case "fullname":
+                    System.out.print("Enter new full name: ");
+                    user.setFullName(scanner.nextLine());
+                    break;
+                case "phonenumber":
+                    System.out.print("Enter new phone number: ");
+                    user.setPhoneNumber(scanner.nextLine());
+                    break;
+                default:
+                    System.out.println("Invalid selection.");
+                    return;
+            }
+
+            System.out.println("Profile updated successfully!");
+            }
     }
 }
