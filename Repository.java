@@ -8,11 +8,10 @@ public class Repository {
     private List<User> users;
     Scanner scanner = new Scanner(System.in);
 
-    public Repository(List<Product> products, List<Order> orders, List<User> users){
-        this.products = new ArrayList<>();
-        this.orders = new ArrayList<>();
-        this.users = new ArrayList<>();
-
+    public Repository(){
+        products = new ArrayList<>();
+        orders = new ArrayList<>();
+        users = new ArrayList<>();
     }
 
     public List<Product> getProducts(){
@@ -131,9 +130,9 @@ public class Repository {
 }
 
 
-    public boolean removeProduct(String productId){
+    // public boolean removeProduct(String productId){
 
-    }
+    // }
 
     public void updateProduct() {
         System.out.print("Please enter the Product ID: ");
@@ -195,9 +194,9 @@ public class Repository {
         System.out.println("Product updated successfully!");
     }
 
-    public void viewProductsAvailability(){
+    // public void viewProductsAvailability(){
 
-    }
+    // }
 
     public List<Product> listAllProducts() {
         System.out.println("\n=== Product List ===");
@@ -212,21 +211,21 @@ public class Repository {
         return products;
     }
 
-    public List<Product>  viewProductByCategory(String category){
+    // public List<Product>  viewProductByCategory(String category){
 
-    }
+    // }
 
-    public Product viewProductById(String producTId){
+    // public Product viewProductById(String producTId){
 
-    }
+    // }
 
-    public void addOrder(Order order){
+    // public void addOrder(Order order){
 
-    }
+    // }
 
-    public boolean removeOrder(String orderId){
+    // public boolean removeOrder(String orderId){
 
-    }
+    // }
 
     public Order viewOrderById(String orderId){
         System.out.print("Please enter the Order ID: ");
@@ -255,13 +254,13 @@ public class Repository {
         return null;
     }
 
-    public List<Order> listAllOrders(){
+    // public List<Order> listAllOrders(){
 
-    }
+    // }
 
-    public List<Order> viewOrdersByCustomer(int customerId){
+    // public List<Order> viewOrdersByCustomer(int customerId){
 
-    }
+    // }
 
     public Order placeOrder(Customer customer){
         System.out.print("Please enter the product name: ");
@@ -318,13 +317,13 @@ public class Repository {
     }
     
 
-    public List<Order> viewOrderHistory(){
+    // public List<Order> viewOrderHistory(){
 
-    }
+    // }
 
-    public void displayOrderHistory(){
+    // public void displayOrderHistory(){
 
-    }
+    // }
 
     public void viewProfile(String username) {
         for (User user : users) {
