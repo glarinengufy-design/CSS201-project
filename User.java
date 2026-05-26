@@ -8,10 +8,7 @@ public abstract class User {
     protected String phoneNumber;
     protected String fullName;
     protected String role;
-    private static Repository repository;
     private static int nextUserId = 1;
-
-    Scanner scanner = new Scanner(System.in);
 
     public User(int userId, String username, String email, String password, String phoneNumber, String fullName, String role){
         this.userId = userId;
@@ -71,7 +68,7 @@ public abstract class User {
         return role;
     }
 
-    public static User registerAccount() {
+    public static User registerAccount(Repository repository) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Registration");
 
@@ -92,7 +89,7 @@ public abstract class User {
 
         System.out.print("Password: ");
         String password = scanner.nextLine();
-
+        
         // Auto-generate userId using internal counter
         int userId = nextUserId++;
 
@@ -115,10 +112,10 @@ public abstract class User {
 
     public abstract void showMenu();
 
-    public static User login(String inputUsername, String inputPassword) {
+    public static User login(Repository repository,String inputUsername, String inputPassword) {
         for (User user : repository.getUsers()) {
             if (user.username.equals(inputUsername) && user.password.equals(inputPassword)) {
-                System.out.println("Login successful! Role: " + user.role);
+                System.out.println("Login successful! Role: " + inputUsername);
                 user.showMenu();
                 return user;
             }
