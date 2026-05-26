@@ -45,25 +45,25 @@ public class Order {
         return sum;
     }
 
-    public void addItem(OrderItem items){
+    // public void addItem(OrderItem items){
 
-    }
+    // }
 
-    public boolean removeItem(String productId){
+    // public boolean removeItem(String productId){
 
-    }
+    // }
 
-    public String getSummary(){
+    // public String getSummary(){
 
-    }
+    // }
 
-    public String getOrderDetails(){
+    // public String getOrderDetails(){
 
-    }
+    // }
 
-    public int getTotalItemCount(){
+    // public int getTotalItemCount(){
 
-    }
+    // }
 
     public boolean updateQuantity(String productId, int quantity) {
         for (OrderItem item : items) {
