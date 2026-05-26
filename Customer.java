@@ -36,7 +36,7 @@ public class Customer extends User{
             case 1:
                 viewProfile();
                 break;
-            case 2:
+            case 2://s
                 updateProfile();
                 break;
             case 3:
