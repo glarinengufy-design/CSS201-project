@@ -1,14 +1,12 @@
 import java.util.Scanner;
 
 public class Admin extends User{
-    private Repository repository;
-
      public Admin(int userId, String username, String email, String password, String phoneNumber, String fullName, String role){
         super(userId, username, email, password, phoneNumber, fullName, role);
     }
 
     @Override
-    public void showMenu() {
+    public void showMenu(Repository repository) {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("\n=== Admin Menu ===");
@@ -30,19 +28,19 @@ public class Admin extends User{
         scanner.nextLine();
         switch (option) {
             case 1:
-                viewProfile();
+                viewProfile(repository);
                 break;
             case 2:
-                updateProfile();
+                updateProfile(repository);
                 break;
             case 3:
-                addProduct();
+                addProduct(repository);
                 break;
             case 4:
-                updateProduct();
+                updateProduct(repository);
                 break;
             case 5:
-                listAllProducts();
+                listAllProducts(repository);
                 break;
             case 6:
                 // viewProductsAvailability();
@@ -54,13 +52,13 @@ public class Admin extends User{
                 // manageOrders();
                 break;
             case 9:
-                // browseProduct();
+                browseProduct(repository);
                 break;  
             case 10:
-                // viewProductByCategory();
+                viewProductByCategory(repository);
                 break;
             case 11:
-                // viewProductDetails();
+                viewProductById(repository);
                 break;
             case 12:
                 System.out.println("Thank you for using Borneo Fresh Market. Goodbye!");
@@ -68,27 +66,25 @@ public class Admin extends User{
             default:
                 System.out.println("Invalid option. Please choose again.");
         }
-
-        scanner.close();
     }
 
-    public void viewProfile(){
+    public void viewProfile(Repository repository){
         repository.viewProfile(username);
     }
 
-    public void updateProfile(){
+    public void updateProfile(Repository repository){
         repository.updateProfile(username);
     }
 
-    public void addProduct() {
+    public void addProduct(Repository repository) {
         repository.addProduct();
     }
 
-    public void updateProduct(){
+    public void updateProduct(Repository repository){
         repository.updateProduct();
     }
 
-    public void listAllProducts(){
+    public void listAllProducts(Repository repository){
         repository.listAllProducts();
     }
 
@@ -104,15 +100,15 @@ public class Admin extends User{
 
     // }
 
-    // public void browseProduct(Product product){
+    public void browseProduct(Repository repository){
+        repository.browseProduct();
+    }
 
-    // }
+    public void viewProductByCategory(Repository repository){
+        repository.viewProductByCategory();
+    }
 
-    // public void viewProductByCategory(String category){
-
-    // }
-
-    // public void viewProductDetails(String producTId){
-
-    // }
+    public void viewProductById(Repository repository){
+        repository.viewProductById();
+    }
 }
