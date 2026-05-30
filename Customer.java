@@ -3,7 +3,6 @@ import java.util.Scanner;
 public class Customer extends User{
     private int customerId;
     private String customerName;
-    private Repository repository;
 
     public Customer(int userId, String username, String email, String password, String phoneNumber, String fullName, String role, int customerId, String customerName){
         super(userId, username, email, password, phoneNumber, fullName, role);
@@ -12,7 +11,7 @@ public class Customer extends User{
     }
 
     @Override
-    public void showMenu() {
+    public void showMenu(Repository repository) {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("\n=== Customer Menu ===");
@@ -34,16 +33,16 @@ public class Customer extends User{
         scanner.nextLine();
         switch (option) {
             case 1:
-                viewProfile();
+                viewProfile(repository);
                 break;
             case 2://s
-                updateProfile();
+                updateProfile(repository);
                 break;
             case 3:
-                listAllProducts();
+                listAllProducts(repository);
                 break;
             case 4:
-                placeOrder();
+                placeOrder(repository);
                 break;
             case 5:
             //     viewOrderHistory();
@@ -58,13 +57,13 @@ public class Customer extends User{
             //     addToCart();
                 break;
             case 9:
-            //     browseProduct();
+                browseProduct(repository);
                 break;      
             case 10:
-            //     viewProductByCategory();
+                viewProductByCategory(repository);
                 break;
             case 11:
-            //     viewProductDetails();
+                viewProductById(repository);
                 break;
             case 12:
                 System.out.println("Thank you for using Borneo Fresh Market. Goodbye!");
@@ -82,19 +81,19 @@ public class Customer extends User{
         return customerName;
     }
 
-    public void viewProfile(){
+    public void viewProfile(Repository repository){
         repository.viewProfile(username);
     }
 
-    public void updateProfile(){
+    public void updateProfile(Repository repository){
         repository.updateProfile(this.username);
     }
 
-    public void listAllProducts(){
+    public void listAllProducts(Repository repository){
         repository.listAllProducts();
     }
 
-    public void placeOrder(){
+    public void placeOrder(Repository repository){
         repository.placeOrder(this);
     }
 
@@ -114,15 +113,15 @@ public class Customer extends User{
 
     // }
 
-    // public void browseProduct(Product product){
+    public void browseProduct(Repository repository){
+        repository.browseProduct();
+    }
 
-    // }
+    public void viewProductByCategory(Repository repository){
+        repository.viewProductByCategory();
+    }
 
-    // public void viewProductByCategory(String category){
-
-    // }
-
-    // public void viewProductDetails(String producTId){
-
-    // }
+    public void viewProductById(Repository repository){
+        repository.viewProductById();
+    }
 }
