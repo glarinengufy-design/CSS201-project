@@ -201,7 +201,7 @@ public class Repository {
     public List<Product> listAllProducts() {
         System.out.println("\n=== Product List ===");
         for (Product p : products) {
-            System.out.println("ID: " + p.getProductId() );
+            System.out.println("\nID: " + p.getProductId() );
             System.out.println("Name: " + p.getProductName());                   
             System.out.println("Category: " + p.getCategory());                  
             System.out.println("Price: RM" + p.getPrice());                  
@@ -211,13 +211,68 @@ public class Repository {
         return products;
     }
 
-    // public List<Product>  viewProductByCategory(String category){
+    public Product browseProduct() {
+        System.out.println("\n=== Browse Product ===");
+        System.out.print("Please enter the product name: ");
+        String inputName = scanner.nextLine();
 
-    // }
+        for (Product p : products) {
+            if (p.getProductName().equalsIgnoreCase(inputName)) {
+                System.out.println("ID: " + p.getProductId() );
+                System.out.println("Name: " + p.getProductName());                   
+                System.out.println("Category: " + p.getCategory());                  
+                System.out.println("Price: RM" + p.getPrice());                  
+                System.out.println("Quantity: " + p.getQuantity());                   
+                System.out.println("Available: " + (p.isAvailability() ? "Yes" : "No"));  
+                return p;
+            }
+        }
+        System.out.println("Product not found.");
+        return null;
+    }
 
-    // public Product viewProductById(String producTId){
+    public List<Product>  viewProductByCategory(){
+        System.out.println("\n=== View Products by Category ===");
+        System.out.println("Please enter the product category: ");
+        String inputCategory = scanner.nextLine();
+        List<Product> productsInCategory = new ArrayList<>();
 
-    // }
+        for (Product p : products) {
+            if (p.getCategory().equalsIgnoreCase(inputCategory)) {
+                System.out.println("ID: " + p.getProductId() );
+                System.out.println("Name: " + p.getProductName());                   
+                System.out.println("Category: " + p.getCategory());                  
+                System.out.println("Price: RM" + p.getPrice());                  
+                System.out.println("Quantity: " + p.getQuantity());                   
+                System.out.println("Available: " + (p.isAvailability() ? "Yes" : "No"));  
+                productsInCategory.add(p);
+            }
+        }
+        if (productsInCategory.isEmpty()) {
+            System.out.println("No products found in this category.");
+        }
+        return productsInCategory;
+    }
+
+    public Product viewProductById(){
+        System.out.println("\n=== View Product Details ===");
+        System.out.println("Please enter the product ID: ");
+        String inputProductId = scanner.nextLine();
+
+        for (Product p : products) {
+            if (p.getProductId().equalsIgnoreCase(inputProductId)) {
+                System.out.println("ID: " + p.getProductId() );
+                System.out.println("Name: " + p.getProductName());                   
+                System.out.println("Category: " + p.getCategory());                  
+                System.out.println("Price: RM" + p.getPrice());                  
+                System.out.println("Quantity: " + p.getQuantity());                   
+                System.out.println("Available: " + (p.isAvailability() ? "Yes" : "No"));  
+                return p;
+            }
+        }
+        System.out.println("Product not found.");
+        return null;
+    }
 
     // public void addOrder(Order order){
 
@@ -228,6 +283,7 @@ public class Repository {
     // }
 
     public Order viewOrderById(String orderId){
+        System.out.println("\n=== View Order ===");
         System.out.print("Please enter the Order ID: ");
         String inputOrderId = scanner.nextLine();
 
@@ -262,40 +318,58 @@ public class Repository {
 
     // }
 
-    public Order placeOrder(Customer customer){
-        System.out.print("Please enter the product name: ");
-        String productName = scanner.nextLine();
+    public Order placeOrder(Customer customer) {
+        List<OrderItem> items = new ArrayList<>();
+        String addMore = "Yes";
 
-        System.out.print("Please enter the product quantity: ");
-        int quantity = scanner.nextInt();
-        scanner.nextLine(); // consume newline
+        System.out.println("\n=== Place Order ===");
 
-        // Find product
-        Product selectedProduct = null;
-        for (Product p : products) {
-            if (p.getProductName().equalsIgnoreCase(productName)) {
-                selectedProduct = p;
-                break;
+        while (addMore.equalsIgnoreCase("Yes")) {
+            System.out.print("Please enter the product name: ");
+            String productName = scanner.nextLine();
+
+            // Find product
+            Product selectedProduct = null;
+            for (Product p : products) {
+                if (p.getProductName().equalsIgnoreCase(productName)) {
+                    selectedProduct = p;
+                    break;
+                }
             }
+
+            if (selectedProduct == null) {
+                System.out.println("Product not found.");
+                return null;
+            }
+
+            System.out.print("Please enter the product quantity: ");
+            int quantity = scanner.nextInt();
+            scanner.nextLine(); // consume newline
+
+            // Create order item
+            OrderItem item = new OrderItem(selectedProduct, quantity);
+            items.add(item);
+
+            System.out.print("Do you want to add more items? (Yes/No): ");
+            addMore = scanner.nextLine();
         }
 
-        if (selectedProduct == null) {
-            System.out.println("Product not found.");
-            return null;
+        // Calculate total for all items
+        double totalPrice = 0;
+        System.out.println("\n=== Order Summary ===");
+        for (OrderItem item : items) {
+            double subtotal = item.getProduct().getPrice() * item.getQuantity();
+            totalPrice += subtotal;
+            System.out.println(item.getProduct().getProductName() + " x " + item.getQuantity() +
+                            " = RM " + subtotal);
         }
-        // Calculate total
-        double totalPrice = selectedProduct.getPrice() * quantity;
-        System.out.println("Total Price: $" + totalPrice);
+        System.out.println("Total Price: RM " + totalPrice);
 
+        // Confirm order
         System.out.print("Confirm order? (Yes/No): ");
         String confirm = scanner.nextLine();
 
         if (confirm.equalsIgnoreCase("Yes")) {
-            // Create order item
-            OrderItem item = new OrderItem(selectedProduct, quantity);
-            List<OrderItem> items = new ArrayList<>();
-            items.add(item);
-
             // Create order
             Order order = new Order(
                 "O" + (orders.size() + 1), // simple ID
@@ -315,7 +389,7 @@ public class Repository {
             return null;
         }
     }
-    
+
 
     // public List<Order> viewOrderHistory(){
 
@@ -351,39 +425,38 @@ public class Repository {
                 System.out.println("Email: " + user.getEmail());
                 System.out.println("Full Name: " + user.getFullName());
                 System.out.println("Phone Number: " + user.getPhoneNumber());
-                return;
-            }
 
-            System.out.print("\nWhich one do you want to update? (username, password, email, fullName, phoneNumber): ");
-            String select = scanner.nextLine();
+                System.out.print("\nWhich one do you want to update? (username, password, email, fullName, phoneNumber): ");
+                String select = scanner.nextLine();
 
-            switch (select.toLowerCase()) {
-                case "username":
-                    System.out.print("Enter new username: ");
-                    user.setUsername(scanner.nextLine());
-                    break;
-                case "password":
-                    System.out.print("Enter new password: ");
-                    user.setPassword(scanner.nextLine());
-                    break;
-                case "email":
-                    System.out.print("Enter new email: ");
-                    user.setEmail(scanner.nextLine());
-                    break;
-                case "fullname":
-                    System.out.print("Enter new full name: ");
-                    user.setFullName(scanner.nextLine());
-                    break;
-                case "phonenumber":
-                    System.out.print("Enter new phone number: ");
-                    user.setPhoneNumber(scanner.nextLine());
-                    break;
-                default:
-                    System.out.println("Invalid selection.");
-                    return;
-            }
+                switch (select.toLowerCase()) {
+                    case "username":
+                        System.out.print("Enter new username: ");
+                        user.setUsername(scanner.nextLine());
+                        break;
+                    case "password":
+                        System.out.print("Enter new password: ");
+                        user.setPassword(scanner.nextLine());
+                        break;
+                    case "email":
+                        System.out.print("Enter new email: ");
+                        user.setEmail(scanner.nextLine());
+                        break;
+                    case "fullname":
+                        System.out.print("Enter new full name: ");
+                        user.setFullName(scanner.nextLine());
+                        break;
+                    case "phonenumber":
+                        System.out.print("Enter new phone number: ");
+                        user.setPhoneNumber(scanner.nextLine());
+                        break;
+                    default:
+                        System.out.println("Invalid selection.");
+                        return;
+                }
 
-            System.out.println("Profile updated successfully!");
+                System.out.println("Profile updated successfully!");
             }
+        }
     }
 }
