@@ -23,7 +23,7 @@ public class App {
         Product milk = new DailyProduct("D001", "Milk", "Dairy", 3.0, 200, true, "Dutch Lady");
         repo.addProduct(milk);
 
-        Product rice = new DailyProduct("G001", "Rice", "Grain", 0.8, 500, true, "Jati");
+        Product rice = new DailyProduct("G001", "Rice", "Grain", 58.0, 500, true, "Jati");
         repo.addProduct(rice);
 
         System.out.println("Welcome to Borneo Fresh Market!");
@@ -53,9 +53,9 @@ public class App {
         if (loggedInUser != null) {
             // role-specific actions
             if (loggedInUser instanceof Admin) {
-                ((Admin) loggedInUser).showMenu();
+                ((Admin) loggedInUser).showMenu(repo);
             } else if (loggedInUser instanceof Customer) {
-                ((Customer) loggedInUser).showMenu();
+                ((Customer) loggedInUser).showMenu(repo);
             }
         }
 
