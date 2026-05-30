@@ -110,13 +110,13 @@ public abstract class User {
         return null;
     }
 
-    public abstract void showMenu();
+    public abstract void showMenu(Repository repository );
 
     public static User login(Repository repository,String inputUsername, String inputPassword) {
         for (User user : repository.getUsers()) {
             if (user.username.equals(inputUsername) && user.password.equals(inputPassword)) {
-                System.out.println("Login successful! Role: " + inputUsername);
-                user.showMenu();
+                System.out.println("Login successful! username: " + inputUsername);
+                user.showMenu(repository);
                 return user;
             }
         }
