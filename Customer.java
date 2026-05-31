@@ -35,8 +35,13 @@ public class Customer extends User{
             case 1:
                 viewProfile(repository);
                 break;
+<<<<<<< Updated upstream
             case 2://s
                 updateProfile(repository);
+=======
+            case 2:
+                updateProfile();
+>>>>>>> Stashed changes
                 break;
             case 3:
                 listAllProducts(repository);
