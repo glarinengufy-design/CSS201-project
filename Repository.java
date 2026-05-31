@@ -35,6 +35,7 @@ public class Repository {
     }
 
     public void addProduct() {
+        System.out.println("\n=== Add Product ===");
         System.out.println("Please select the product category");
         String category = scanner.nextLine();
 
@@ -60,7 +61,7 @@ public class Repository {
                 System.out.println("Please enter product expiry date");
                 expiryDate= scanner.nextLine();
                 Vegetable newVegetable = new Vegetable(
-                    "P" + (products.size() + 1), // auto ID
+                    "V" + (products.size() + 1), // auto ID
                     name,
                     "Vegetable",
                     price,
@@ -69,12 +70,13 @@ public class Repository {
                     expiryDate
                 );
                 products.add(newVegetable);
+                break;
             
             case "Snack":
                 System.out.println("Please enter product brand");
                 brand = scanner.nextLine();
                 Snack newSnack = new Snack(
-                    "P" + (products.size() + 1), // auto ID
+                    "S" + (products.size() + 1), // auto ID
                     name,
                     "Snack",
                     price,
@@ -83,12 +85,13 @@ public class Repository {
                     brand
                 );
                 products.add(newSnack);
+                break;
 
             case "Fruit":
                 System.out.println("Please enter product expiry date");
                 expiryDate= scanner.nextLine();
                 Fruit newFruit = new Fruit(
-                    "P" + (products.size() + 1), // auto ID
+                    "F" + (products.size() + 1), // auto ID
                     name,
                     "Fruit",
                     price,
@@ -97,12 +100,13 @@ public class Repository {
                     expiryDate
                 );
                 products.add(newFruit);
+                break;
 
             case "Daily Product":
                 System.out.println("Please enter product brand");
                 brand = scanner.nextLine();
                 DailyProduct newDailyProduct = new DailyProduct(
-                    "P" + (products.size() + 1), // auto ID
+                    "D" + (products.size() + 1), // auto ID
                     name,
                     "Daily Product",
                     price,
@@ -111,12 +115,13 @@ public class Repository {
                     brand
                 );
                 products.add(newDailyProduct);
+                break;
 
             case "Household Necessities":
                 System.out.println("Please enter product brand");
                 brand = scanner.nextLine();
                 HouseholdNecessities newHousehold = new HouseholdNecessities(
-                    "P" + (products.size() + 1), // auto ID
+                    "H" + (products.size() + 1), // auto ID
                     name,
                     "Household Necessities",
                     price,
@@ -125,6 +130,7 @@ public class Repository {
                     brand
                 );
                 products.add(newHousehold);
+                break;
         }
         System.out.println("Product added successfully!");
 }
@@ -135,6 +141,7 @@ public class Repository {
     // }
 
     public void updateProduct() {
+        System.out.println("\n=== Update Product ===");
         System.out.print("Please enter the Product ID: ");
         String productId = scanner.nextLine();
 
@@ -200,6 +207,7 @@ public class Repository {
 
     public List<Product> listAllProducts() {
         System.out.println("\n=== Product List ===");
+
         for (Product p : products) {
             System.out.println("\nID: " + p.getProductId() );
             System.out.println("Name: " + p.getProductName());                   
@@ -357,6 +365,7 @@ public class Repository {
         // Calculate total for all items
         double totalPrice = 0;
         System.out.println("\n=== Order Summary ===");
+
         for (OrderItem item : items) {
             double subtotal = item.getProduct().getPrice() * item.getQuantity();
             totalPrice += subtotal;
