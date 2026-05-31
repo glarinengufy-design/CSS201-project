@@ -6,6 +6,7 @@ public class Repository {
     private List<Product> products;
     private List<Order> orders;
     private List<User> users;
+    private List<Review> reviews = new ArrayList<>();
     Scanner scanner = new Scanner(System.in);
 
     public Repository(){
@@ -26,12 +27,20 @@ public class Repository {
         return users;
     }
 
+    public List<Review> getReviews(){
+        return reviews;
+    }
+
     public void addUser(User user) { 
         users.add(user); 
     }
 
     public void addProduct(Product product) {
         products.add(product);
+    }
+
+    public void addReview(Review review) {
+        reviews.add(review);
     }
 
     public void addProduct() {
@@ -205,7 +214,7 @@ public class Repository {
 
     // }
 
-    public List<Product> listAllProducts() {
+    public void listAllProducts() {
         System.out.println("\n=== Product List ===");
 
         for (Product p : products) {
@@ -216,7 +225,6 @@ public class Repository {
             System.out.println("Quantity: " + p.getQuantity());                   
             System.out.println("Available: " + (p.isAvailability() ? "Yes" : "No"));                   
         }
-        return products;
     }
 
     public Product browseProduct() {
@@ -380,8 +388,9 @@ public class Repository {
 
         if (confirm.equalsIgnoreCase("Yes")) {
             // Create order
+            String orderId = "O" + (orders.size() + 1);
             Order order = new Order(
-                "O" + (orders.size() + 1), // simple ID
+                orderId,
                 customer,
                 items,
                 java.time.LocalDateTime.now(),
@@ -389,6 +398,20 @@ public class Repository {
             );
             orders.add(order);
             System.out.println("Order placed successfully!");
+
+            System.out.print("Would you like to write a review? (Yes/No): ");
+            String reviewChoice = scanner.nextLine();
+
+            if (reviewChoice.equalsIgnoreCase("Yes")) {
+                System.out.print("Please enter your comment: ");
+                String comment = scanner.nextLine();
+
+                String reviewId = "R" + (getReviews().size() + 1);
+                Review review = new Review(reviewId, orderId, java.time.LocalDateTime.now(), comment);
+                addReview(review);
+
+                System.out.println("Thank you! Your review has been submitted.");
+            }
             return order;
         } else if (confirm.equalsIgnoreCase("No")) {
             System.out.println("Order cancelled.");
@@ -461,11 +484,27 @@ public class Repository {
                         break;
                     default:
                         System.out.println("Invalid selection.");
-                        return;
+                        break;
                 }
 
                 System.out.println("Profile updated successfully!");
             }
+        }
+    }
+
+    public void viewAllReviews() {
+        System.out.println("\n=== All Reviews ===");
+        if (reviews.isEmpty()) {
+            System.out.println("No reviews available.");
+            return;
+        }
+
+        for (Review r : reviews) {
+            System.out.println("Review ID: " + r.getReviewId());
+            System.out.println("Order ID: " + r.getOrderId());
+            System.out.println("Date: " + r.getReviewDate());
+            System.out.println("Comment: " + r.getReviewComment());
+            System.out.println("-----------------------------");
         }
     }
 }
