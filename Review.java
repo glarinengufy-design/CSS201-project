@@ -2,24 +2,30 @@ import java.time.LocalDateTime;
 
 public class Review {
     private String reviewId;
-    private String customerName;
+    private String orderId;
     private LocalDateTime reviewDate;
+    private String reviewComment;
 
-    public Review(String reviewId, String customerName, LocalDateTime reviewDate){
+    public Review(String reviewId, String orderId, LocalDateTime reviewDate, String reviewComment){
         this.reviewId = reviewId;
-        this.customerName = customerName;
+        this.orderId = orderId;
         this.reviewDate = reviewDate;
+        this.reviewComment = reviewComment;
     }
 
     public String getReviewId(){
         return reviewId;
     }
 
-    public String getCustomerName(){
-        return customerName;
+    public String getOrderId(){
+        return orderId;
     }
-
+    
     public LocalDateTime getReviewDate(){
         return reviewDate;
+    }
+
+    public String getReviewComment(){
+        return reviewComment;
     }
 }
