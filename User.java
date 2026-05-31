@@ -116,7 +116,6 @@ public abstract class User {
         for (User user : repository.getUsers()) {
             if (user.username.equals(inputUsername) && user.password.equals(inputPassword)) {
                 System.out.println("Login successful! username: " + inputUsername);
-                user.showMenu(repository);
                 return user;
             }
         }
