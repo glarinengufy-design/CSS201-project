@@ -21,33 +21,29 @@ public class Customer extends User{
         System.out.println("4. Place order");
         System.out.println("5. View order history");
         System.out.println("6. Display order history");
-        System.out.println("7. View cart");
-        System.out.println("8. Add to cart");
-        System.out.println("9. Browse products");
-        System.out.println("10. View product by category");
-        System.out.println("11. View product details");
-        System.out.println("12. Exit");
+        System.out.println("7. Browse products");
+        System.out.println("8. View product by category");
+        System.out.println("9. View product details");
+        System.out.println("10. Exit");
 
         System.out.println("Please choose an option:");
         int option = scanner.nextInt();
-        scanner.nextLine();
         switch (option) {
             case 1:
                 viewProfile(repository);
+                showMenu(repository);
                 break;
-<<<<<<< Updated upstream
             case 2://s
                 updateProfile(repository);
-=======
-            case 2:
-                updateProfile();
->>>>>>> Stashed changes
+                showMenu(repository);   
                 break;
             case 3:
                 listAllProducts(repository);
+                showMenu(repository);
                 break;
             case 4:
                 placeOrder(repository);
+                showMenu(repository);
                 break;
             case 5:
             //     viewOrderHistory();
@@ -56,25 +52,23 @@ public class Customer extends User{
             //     displayOrderHistory();
                 break;  
             case 7:
-            //     viewCart();
-                break;
+                browseProduct(repository);
+                showMenu(repository);
+                break;      
             case 8:
-            //     addToCart();
+                viewProductByCategory(repository);
+                showMenu(repository);
                 break;
             case 9:
-                browseProduct(repository);
-                break;      
-            case 10:
-                viewProductByCategory(repository);
-                break;
-            case 11:
                 viewProductById(repository);
+                showMenu(repository);
                 break;
-            case 12:
+            case 10:
                 System.out.println("Thank you for using Borneo Fresh Market. Goodbye!");
                 break;
             default:
                 System.out.println("Invalid option. Please choose again.");
+                break;
         }
     }
 
@@ -107,14 +101,6 @@ public class Customer extends User{
     // }
 
     // public void displayOrderHistory(){
-
-    // }
-
-    // public void viewCart(){
-
-    // }
-
-    // public void addToCart(Product product, int quantity){
 
     // }
 
