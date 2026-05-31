@@ -8,10 +8,12 @@ public class App {
         Repository repo = new Repository();
 
         Admin admin = new Admin(6464588,"admin123","borneo_freshfood@gmail.com","Ad_14899","014-333555","Borneo Fresh Food Official","Admin");
-        Customer customer = new Customer(444515,"dnfdj","fafa445@gamil.com","fafa123","014-331155","Fafa","Customer", 444515, "dnfdj");
-        Customer customer2 = new Customer(105802515,"glarine123","glarine123@gmail.com","g1115","014-331155","Glarine Ngu","Customer", 105802515, "glarine123");
         repo.addUser(admin);
+
+        Customer customer = new Customer(444515,"dnfdj","fafa445@gamil.com","fafa123","014-331155","Fafa","Customer", 444515, "dnfdj");
         repo.addUser(customer);
+
+        Customer customer2 = new Customer(105802515,"glarine123","glarine123@gmail.com","g1115","014-331155","Glarine Ngu","Customer", 105802515, "glarine123");
         repo.addUser(customer2);
 
         Product carrot = new Vegetable("V001", "Carrot", "Vegetable", 1.5, 50, true, "2026-08-30");
@@ -28,7 +30,10 @@ public class App {
 
         Review review1 = new Review("R001", "O001", LocalDateTime.now(), "Great quality and fresh produce!");
         repo.addReview(review1);
-        
+
+        Review review2 = new Review("R002", "O001", LocalDateTime.now(), "Excellent customer service.");
+        repo.addReview(review2);
+
         System.out.println("Welcome to Borneo Fresh Market!");
 
         do {
