@@ -1,4 +1,4 @@
-// import java.time.LocalDateTime;
+import java.time.LocalDateTime;
 import java.util.Scanner;
 
 public class App {
@@ -26,6 +26,9 @@ public class App {
         Product rice = new DailyProduct("G001", "Rice", "Grain", 58.0, 500, true, "Jati");
         repo.addProduct(rice);
 
+        Review review1 = new Review("R001", "O001", LocalDateTime.now(), "Great quality and fresh produce!");
+        repo.addReview(review1);
+        
         System.out.println("Welcome to Borneo Fresh Market!");
 
         do {
