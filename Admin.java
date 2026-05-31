@@ -21,7 +21,8 @@ public class Admin extends User{
         System.out.println("9. Browse products");
         System.out.println("10. View product by category");
         System.out.println("11. View product details");
-        System.out.println("12. Exit");
+        System.out.println("12. View reviews");
+        System.out.println("13. Exit");
 
         System.out.println("Please choose an option:");
         int option = scanner.nextInt();
@@ -29,18 +30,23 @@ public class Admin extends User{
         switch (option) {
             case 1:
                 viewProfile(repository);
+                showMenu(repository);
                 break;
             case 2:
                 updateProfile(repository);
+                showMenu(repository);
                 break;
             case 3:
                 addProduct(repository);
+                showMenu(repository);
                 break;
             case 4:
                 updateProduct(repository);
+                showMenu(repository);
                 break;
             case 5:
                 listAllProducts(repository);
+                showMenu(repository);
                 break;
             case 6:
                 // viewProductsAvailability();
@@ -53,18 +59,26 @@ public class Admin extends User{
                 break;
             case 9:
                 browseProduct(repository);
+                showMenu(repository);
                 break;  
             case 10:
                 viewProductByCategory(repository);
+                showMenu(repository);
                 break;
             case 11:
                 viewProductById(repository);
+                showMenu(repository);
                 break;
             case 12:
+                viewAllReviews(repository);
+                showMenu(repository);
+                break;
+            case 13:
                 System.out.println("Thank you for using Borneo Fresh Market. Goodbye!");
                 break;
             default:
                 System.out.println("Invalid option. Please choose again.");
+                break;
         }
     }
 
@@ -110,5 +124,9 @@ public class Admin extends User{
 
     public void viewProductById(Repository repository){
         repository.viewProductById();
+    }
+
+    public void viewAllReviews(Repository repository){
+        repository.viewAllReviews();
     }
 }
