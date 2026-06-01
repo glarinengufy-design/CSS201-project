@@ -8,19 +8,21 @@ public class SalesReport {
     }
 
     private Map<String, Integer> buildSalesMap() {
-        Map<String, Integer> salesMap = new HashMap<>();
+        Map<String, Integer> salesMap = new HashMap<>();    //key = product ID (String) and quantity (Integer)
 
-        for (Order order : repository.getOrders()) {
+        for (Order order : repository.getOrders()) { //combine all orders item in a list
             for (OrderItem item : order.getItems()) {
                 String productId = item.getProduct().getProductId();
                 int quantity = item.getQuantity();
 
+                // add quantity to the existing count for this product ID, or initialize it if not present
                 salesMap.put(productId, salesMap.getOrDefault(productId, 0) + quantity);
             }
         }
         return salesMap;
     }
 
+    // Top-selling product
     public Product getTopSalesProduct() {
         Map<String, Integer> salesMap = buildSalesMap();
         String topId = null;
@@ -32,7 +34,8 @@ public class SalesReport {
                 topId = entry.getKey();
             }
         }
-        return topId != null ? repository.viewProductById(topId) : null;
+
+        return topId != null ? repository.findProductById(topId) : null;
     }
 
     // Least-selling product
@@ -47,7 +50,7 @@ public class SalesReport {
                 leastId = entry.getKey();
             }
         }
-        return leastId != null ? repository.viewProductById(leastId) : null;
+        return leastId != null ? repository.findProductById(leastId) : null;
     }
 
     // Total number of orders
@@ -86,7 +89,5 @@ public class SalesReport {
         if (leastProduct != null) {
             System.out.println("Least-Selling Product: " + leastProduct.getProductName());
         }
-
-        System.out.println("=====================");
     }
 }
