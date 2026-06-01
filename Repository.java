@@ -9,30 +9,30 @@ public class Repository {
     private List<Review> reviews = new ArrayList<>();
     Scanner scanner = new Scanner(System.in);
 
-    public Repository(){
+    public Repository() {
         products = new ArrayList<>();
         orders = new ArrayList<>();
         users = new ArrayList<>();
     }
 
-    public List<Product> getProducts(){
+    public List<Product> getProducts() {
         return products;
     }
 
-    public List<Order> getOrders(){
+    public List<Order> getOrders() {
         return orders;
     }
 
-    public List<User> getUsers(){
+    public List<User> getUsers() {
         return users;
     }
 
-    public List<Review> getReviews(){
+    public List<Review> getReviews() {
         return reviews;
     }
 
-    public void addUser(User user) { 
-        users.add(user); 
+    public void addUser(User user) {
+        users.add(user);
     }
 
     public void addProduct(Product product) {
@@ -69,49 +69,46 @@ public class Repository {
         String expiryDate = null;
         String brand = null;
 
-        switch(category){
+        switch (category) {
             case "Vegetable":
                 System.out.println("Please enter product expiry date");
-                expiryDate= scanner.nextLine();
+                expiryDate = scanner.nextLine();
                 Vegetable newVegetable = new Vegetable(
-                    "V" + (products.size() + 1), // auto ID
-                    name,
-                    "Vegetable",
-                    price,
-                    quantity,
-                    available,
-                    expiryDate
-                );
+                        "V" + (products.size() + 1), // auto ID
+                        name,
+                        "Vegetable",
+                        price,
+                        quantity,
+                        available,
+                        expiryDate);
                 products.add(newVegetable);
                 break;
-            
+
             case "Snack":
                 System.out.println("Please enter product brand");
                 brand = scanner.nextLine();
                 Snack newSnack = new Snack(
-                    "S" + (products.size() + 1), // auto ID
-                    name,
-                    "Snack",
-                    price,
-                    quantity,
-                    available,
-                    brand
-                );
+                        "S" + (products.size() + 1), // auto ID
+                        name,
+                        "Snack",
+                        price,
+                        quantity,
+                        available,
+                        brand);
                 products.add(newSnack);
                 break;
 
             case "Fruit":
                 System.out.println("Please enter product expiry date");
-                expiryDate= scanner.nextLine();
+                expiryDate = scanner.nextLine();
                 Fruit newFruit = new Fruit(
-                    "F" + (products.size() + 1), // auto ID
-                    name,
-                    "Fruit",
-                    price,
-                    quantity,
-                    available,
-                    expiryDate
-                );
+                        "F" + (products.size() + 1), // auto ID
+                        name,
+                        "Fruit",
+                        price,
+                        quantity,
+                        available,
+                        expiryDate);
                 products.add(newFruit);
                 break;
 
@@ -119,14 +116,13 @@ public class Repository {
                 System.out.println("Please enter product brand");
                 brand = scanner.nextLine();
                 DailyProduct newDailyProduct = new DailyProduct(
-                    "D" + (products.size() + 1), // auto ID
-                    name,
-                    "Daily Product",
-                    price,
-                    quantity,
-                    available,
-                    brand
-                );
+                        "D" + (products.size() + 1), // auto ID
+                        name,
+                        "Daily Product",
+                        price,
+                        quantity,
+                        available,
+                        brand);
                 products.add(newDailyProduct);
                 break;
 
@@ -134,20 +130,18 @@ public class Repository {
                 System.out.println("Please enter product brand");
                 brand = scanner.nextLine();
                 HouseholdNecessities newHousehold = new HouseholdNecessities(
-                    "H" + (products.size() + 1), // auto ID
-                    name,
-                    "Household Necessities",
-                    price,
-                    quantity,
-                    available,
-                    brand
-                );
+                        "H" + (products.size() + 1), // auto ID
+                        name,
+                        "Household Necessities",
+                        price,
+                        quantity,
+                        available,
+                        brand);
                 products.add(newHousehold);
                 break;
         }
         System.out.println("Product added successfully!");
-}
-
+    }
 
     // public boolean removeProduct(String productId){
 
@@ -202,7 +196,7 @@ public class Repository {
             boolean newAvailability = scanner.nextBoolean();
             scanner.nextLine();
             productToUpdate.setAvailable(newAvailability);
-        } else if(select.equalsIgnoreCase("quantity")){
+        } else if (select.equalsIgnoreCase("quantity")) {
             System.out.print("Enter new quantity: ");
             int newQuantity = scanner.nextInt();
             scanner.nextLine();
@@ -222,12 +216,12 @@ public class Repository {
         System.out.println("\n=== Product List ===");
 
         for (Product p : products) {
-            System.out.println("\nID: " + p.getProductId() );
-            System.out.println("Name: " + p.getProductName());                   
-            System.out.println("Category: " + p.getCategory());                  
-            System.out.println("Price: RM" + p.getPrice());                  
-            System.out.println("Quantity: " + p.getQuantity());                   
-            System.out.println("Available: " + (p.isAvailability() ? "Yes" : "No"));                   
+            System.out.println("\nID: " + p.getProductId());
+            System.out.println("Name: " + p.getProductName());
+            System.out.println("Category: " + p.getCategory());
+            System.out.println("Price: RM" + p.getPrice());
+            System.out.println("Quantity: " + p.getQuantity());
+            System.out.println("Available: " + (p.isAvailability() ? "Yes" : "No"));
         }
     }
 
@@ -238,12 +232,12 @@ public class Repository {
 
         for (Product p : products) {
             if (p.getProductName().equalsIgnoreCase(inputName)) {
-                System.out.println("ID: " + p.getProductId() );
-                System.out.println("Name: " + p.getProductName());                   
-                System.out.println("Category: " + p.getCategory());                  
-                System.out.println("Price: RM" + p.getPrice());                  
-                System.out.println("Quantity: " + p.getQuantity());                   
-                System.out.println("Available: " + (p.isAvailability() ? "Yes" : "No"));  
+                System.out.println("ID: " + p.getProductId());
+                System.out.println("Name: " + p.getProductName());
+                System.out.println("Category: " + p.getCategory());
+                System.out.println("Price: RM" + p.getPrice());
+                System.out.println("Quantity: " + p.getQuantity());
+                System.out.println("Available: " + (p.isAvailability() ? "Yes" : "No"));
                 return p;
             }
         }
@@ -251,7 +245,7 @@ public class Repository {
         return null;
     }
 
-    public List<Product>  viewProductByCategory(){
+    public List<Product> viewProductByCategory() {
         System.out.println("\n=== View Products by Category ===");
         System.out.println("Please enter the product category: ");
         String inputCategory = scanner.nextLine();
@@ -259,12 +253,12 @@ public class Repository {
 
         for (Product p : products) {
             if (p.getCategory().equalsIgnoreCase(inputCategory)) {
-                System.out.println("ID: " + p.getProductId() );
-                System.out.println("Name: " + p.getProductName());                   
-                System.out.println("Category: " + p.getCategory());                  
-                System.out.println("Price: RM" + p.getPrice());                  
-                System.out.println("Quantity: " + p.getQuantity());                   
-                System.out.println("Available: " + (p.isAvailability() ? "Yes" : "No"));  
+                System.out.println("ID: " + p.getProductId());
+                System.out.println("Name: " + p.getProductName());
+                System.out.println("Category: " + p.getCategory());
+                System.out.println("Price: RM" + p.getPrice());
+                System.out.println("Quantity: " + p.getQuantity());
+                System.out.println("Available: " + (p.isAvailability() ? "Yes" : "No"));
                 productsInCategory.add(p);
             }
         }
@@ -274,19 +268,19 @@ public class Repository {
         return productsInCategory;
     }
 
-    public Product viewProductById(){
+    public Product viewProductById() {
         System.out.println("\n=== View Product Details ===");
         System.out.println("Please enter the product ID: ");
         String inputProductId = scanner.nextLine();
 
         for (Product p : products) {
             if (p.getProductId().equalsIgnoreCase(inputProductId)) {
-                System.out.println("ID: " + p.getProductId() );
-                System.out.println("Name: " + p.getProductName());                   
-                System.out.println("Category: " + p.getCategory());                  
-                System.out.println("Price: RM" + p.getPrice());                  
-                System.out.println("Quantity: " + p.getQuantity());                   
-                System.out.println("Available: " + (p.isAvailability() ? "Yes" : "No"));  
+                System.out.println("ID: " + p.getProductId());
+                System.out.println("Name: " + p.getProductName());
+                System.out.println("Category: " + p.getCategory());
+                System.out.println("Price: RM" + p.getPrice());
+                System.out.println("Quantity: " + p.getQuantity());
+                System.out.println("Available: " + (p.isAvailability() ? "Yes" : "No"));
                 return p;
             }
         }
@@ -302,7 +296,7 @@ public class Repository {
 
     // }
 
-    public Order viewOrderById(String orderId){
+    public Order viewOrderById(String orderId) {
         System.out.println("\n=== View Order ===");
         System.out.print("Please enter the Order ID: ");
         String inputOrderId = scanner.nextLine();
@@ -313,12 +307,12 @@ public class Repository {
                 System.out.println("Order ID: " + o.getOrderId());
                 System.out.println("Customer: " + o.getCustomer().getCustomerName());
                 System.out.println("Order Date: " + o.getOrderDate());
-                
+
                 System.out.println("\nPurchased Items:");
                 for (OrderItem item : o.getItems()) {
                     System.out.println("- " + item.getProduct().getProductName() +
-                                       " | Quantity: " + item.getQuantity() +
-                                       " | Subtotal: $" + item.calculateTotal());
+                            " | Quantity: " + item.getQuantity() +
+                            " | Subtotal: $" + item.calculateTotal());
                 }
 
                 System.out.println("Total Cost: $" + o.getTotalCost());
@@ -382,7 +376,7 @@ public class Repository {
             double subtotal = item.getProduct().getPrice() * item.getQuantity();
             totalPrice += subtotal;
             System.out.println(item.getProduct().getProductName() + " x " + item.getQuantity() +
-                            " = RM " + subtotal);
+                    " = RM " + subtotal);
         }
         System.out.println("Total Price: RM " + totalPrice);
 
@@ -394,15 +388,15 @@ public class Repository {
             // Create order
             String orderId = "O" + (orders.size() + 1);
             Order order = new Order(
-                orderId,
-                customer,
-                items,
-                java.time.LocalDateTime.now(),
-                totalPrice
-            );
+                    orderId,
+                    customer,
+                    items,
+                    java.time.LocalDateTime.now(),
+                    totalPrice);
             orders.add(order);
             System.out.println("Order placed successfully!");
 
+            System.out.println("\n=== Review ===");
             System.out.print("Would you like to write a review? (Yes/No): ");
             String reviewChoice = scanner.nextLine();
 
@@ -425,7 +419,6 @@ public class Repository {
             return null;
         }
     }
-
 
     // public List<Order> viewOrderHistory(){
 
@@ -462,7 +455,8 @@ public class Repository {
                 System.out.println("Full Name: " + user.getFullName());
                 System.out.println("Phone Number: " + user.getPhoneNumber());
 
-                System.out.print("\nWhich one do you want to update? (username, password, email, fullName, phoneNumber): ");
+                System.out.print(
+                        "\nWhich one do you want to update? (username, password, email, fullName, phoneNumber): ");
                 String select = scanner.nextLine();
 
                 switch (select.toLowerCase()) {
