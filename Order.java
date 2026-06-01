@@ -17,6 +17,11 @@ public class Order {
         this.totalCost = totalCost;
     }
 
+    public void addOrderItem(OrderItem item){
+        items.add(item);
+        totalCost += item.calculateTotal();
+    }
+
     public String getOrderId(){
         return orderId;
     }
