@@ -39,6 +39,10 @@ public class Repository {
         products.add(product);
     }
 
+    public void addOrder(Order order) {
+        orders.add(order);
+    }
+
     public void addReview(Review review) {
         reviews.add(review);
     }
@@ -507,4 +511,14 @@ public class Repository {
             System.out.println("-----------------------------");
         }
     }
+
+    public Product findProductById(String productId) {
+        for (Product p : products) {
+            if (p.getProductId().equalsIgnoreCase(productId)) {
+                return p;
+            }
+        }
+        return null;
+    }
+
 }
