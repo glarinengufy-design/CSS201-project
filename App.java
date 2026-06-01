@@ -5,22 +5,25 @@ import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        boolean isRunning = true; 
+        boolean isRunning = true;
         Scanner scanner = new Scanner(System.in);
         Repository repo = new Repository();
 
-        //admin
-        Admin admin = new Admin(6464588,"admin123","borneo_freshfood@gmail.com","Ad_14899","014-333555","Borneo Fresh Food Official","Admin");
+        // admin
+        Admin admin = new Admin(6464588, "admin123", "borneo_freshfood@gmail.com", "Ad_14899", "014-333555",
+                "Borneo Fresh Food Official", "Admin");
         repo.addUser(admin);
 
-        //customer
-        Customer customer = new Customer(444515,"dnfdj","fafa445@gamil.com","fafa123","014-331155","Fafa","Customer", 444515, "dnfdj");
+        // customer
+        Customer customer = new Customer(444515, "dnfdj", "fafa445@gamil.com", "fafa123", "014-331155", "Fafa",
+                "Customer", 444515, "dnfdj");
         repo.addUser(customer);
 
-        Customer customer2 = new Customer(105802515,"glarine123","glarine123@gmail.com","g1115","014-331155","Glarine Ngu","Customer", 105802515, "glarine123");
+        Customer customer2 = new Customer(105802515, "glarine123", "glarine123@gmail.com", "g1115", "014-331155",
+                "Glarine Ngu", "Customer", 105802515, "glarine123");
         repo.addUser(customer2);
 
-        //products
+        // products
         Product carrot = new Vegetable("V001", "Carrot", "Vegetable", 1.5, 50, true, "2026-08-30");
         repo.addProduct(carrot);
 
@@ -33,19 +36,29 @@ public class App {
         Product rice = new DailyProduct("G001", "Rice", "Grain", 58.0, 500, true, "Jati");
         repo.addProduct(rice);
 
-        //order items
-        OrderItem item1 = new OrderItem(apple, 3);  
-        OrderItem item2 = new OrderItem(milk, 2); 
+        // order items
+        OrderItem item1 = new OrderItem(apple, 3);
+        OrderItem item2 = new OrderItem(milk, 2);
 
-        List<OrderItem> items = new ArrayList<>();
-        items.add(item1);
-        items.add(item2);
+        List<OrderItem> itemList1 = new ArrayList<>();
+        itemList1.add(item1);
+        itemList1.add(item2);
 
-        //order
-        Order order = new Order("O001", customer2, items, LocalDateTime.now(), 50.0);
+        OrderItem item3 = new OrderItem(carrot, 5);
+        OrderItem item4 = new OrderItem(milk, 8);
+
+        List<OrderItem> itemList2 = new ArrayList<>();
+        itemList2.add(item3);
+        itemList2.add(item4);
+
+        // order
+        Order order = new Order("O001", customer2, itemList1, LocalDateTime.now(), 50.0);
         repo.addOrder(order);
 
-        //reviews
+        Order order2 = new Order("O002", customer2, itemList2, LocalDateTime.now(), 100.0);
+        repo.addOrder(order2);
+
+        // reviews
         Review review1 = new Review("R001", "O001", LocalDateTime.now(), "Great quality and fresh produce!");
         repo.addReview(review1);
 
@@ -86,5 +99,5 @@ public class App {
         }
 
         scanner.close();
-    } 
+    }
 }
