@@ -8,14 +8,13 @@ public class SalesReport {
     }
 
     private Map<String, Integer> buildSalesMap() {
-        Map<String, Integer> salesMap = new HashMap<>();    //key = product ID (String) and quantity (Integer)
+        Map<String, Integer> salesMap = new HashMap<>(); // key = product ID (String) and quantity (Integer)
 
-        for (Order order : repository.getOrders()) { //combine all orders item in a list
+        for (Order order : repository.getOrders()) { // combine all orders item in a list
             for (OrderItem item : order.getItems()) {
                 String productId = item.getProduct().getProductId();
                 int quantity = item.getQuantity();
 
-                // add quantity to the existing count for this product ID, or initialize it if not present
                 salesMap.put(productId, salesMap.getOrDefault(productId, 0) + quantity);
             }
         }
@@ -25,6 +24,7 @@ public class SalesReport {
     // Top-selling product
     public Product getTopSalesProduct() {
         Map<String, Integer> salesMap = buildSalesMap();
+        // Map<String, Integer> salesMap = new HashMap<>();
         String topId = null;
         int max = 0;
 
@@ -34,7 +34,6 @@ public class SalesReport {
                 topId = entry.getKey();
             }
         }
-
         return topId != null ? repository.findProductById(topId) : null;
     }
 
