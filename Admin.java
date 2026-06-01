@@ -22,7 +22,8 @@ public class Admin extends User{
         System.out.println("10. View product by category");
         System.out.println("11. View product details");
         System.out.println("12. View reviews");
-        System.out.println("13. Exit");
+        System.out.println("13. View sales report");
+        System.out.println("14. Exit");
 
         System.out.println("Please choose an option:");
         int option = scanner.nextInt();
@@ -74,6 +75,11 @@ public class Admin extends User{
                 showMenu(repository);
                 break;
             case 13:
+                SalesReport salesReport = new SalesReport(repository);
+                salesReport.displaySalesReport();
+                showMenu(repository);
+                break;
+            case 14:
                 System.out.println("Thank you for using Borneo Fresh Market. Goodbye!");
                 break;
             default:
