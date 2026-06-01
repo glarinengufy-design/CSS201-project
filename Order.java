@@ -1,5 +1,4 @@
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Order {
@@ -9,36 +8,36 @@ public class Order {
     private LocalDateTime orderDate;
     private double totalCost;
 
-    public Order(String orderId, Customer customer, List<OrderItem> items, LocalDateTime orderDate, double totalCost){
+    public Order(String orderId, Customer customer, List<OrderItem> items, LocalDateTime orderDate, double totalCost) {
         this.orderId = orderId;
         this.customer = customer;
-        this.items = new ArrayList<>();
+        this.items = items;
         this.orderDate = orderDate;
         this.totalCost = totalCost;
     }
 
-    public void addOrderItem(OrderItem item){
+    public void addOrderItem(OrderItem item) {
         items.add(item);
         totalCost += item.calculateTotal();
     }
 
-    public String getOrderId(){
+    public String getOrderId() {
         return orderId;
     }
 
-    public Customer getCustomer(){
+    public Customer getCustomer() {
         return customer;
     }
 
-    public List<OrderItem> getItems(){
+    public List<OrderItem> getItems() {
         return items;
     }
 
-    public LocalDateTime getOrderDate(){
+    public LocalDateTime getOrderDate() {
         return orderDate;
     }
 
-    public double getTotalCost(){
+    public double getTotalCost() {
         return totalCost;
     }
 
